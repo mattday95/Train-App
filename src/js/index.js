@@ -1,23 +1,12 @@
 // JavaScript Document
 
-class App {
-	
-	constructor() {
-		
-		this.init();
-	}
-	
-	init() {
-		
-		alert('hi from app');
-	}
-}
+import App from './App';
 
 
 $(document).ready( () => {
 	
 	
-	const App = new App();
-	App.init();
+	const myApp = new App();
+	myApp.init();
 	
 });

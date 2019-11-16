@@ -2,18 +2,36 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Train App</title>
 	<link rel="stylesheet" type="text/css" href="dist/css/style.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,700&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/986df48220.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 	
-	<div class="app">
+	<div class="app-logo"><a href="#">Delay by day</a></div>
+	
+	<div class="app" id="app">
 		<form class="app-form">
-			this is the form
+			<div class="form-input">
+				<label for="from">From</label>
+				<input autocomplete="off" id="from" type="text" placeholder="search by name or station code">
+			</div>
+			<div class="form-input">
+				<label for="to">To</label>
+				<input autocomplete="off" id="to" type="text" placeholder="search by name or station code">
+			</div>
+			<div class="button-wrapper">
+				<button class="get-delays" type="submit">Get latest Delays</button>
+			</div>
 		</form>
+		
+		<div class="results" id="results"></div>
 	</div>
+
 	
 	<script type="text/javascript" src="dist/js/index.min.js"></script>
 </body>
