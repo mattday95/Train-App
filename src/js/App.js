@@ -57,6 +57,8 @@ export default class App {
 				if (request.responseText){
 					
 					var response = JSON.parse(request.response);
+					
+					that.app.find("#results").html("");
 					that.animateForward();
 					that.displayResults(response);
 				}
