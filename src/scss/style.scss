@@ -33,26 +33,29 @@ a:-webkit-any-link {
     text-decoration: none;
 }
 
-.app-logo {
-	position: absolute;
-	top: 20px;
-	left: 20px;
-	text-transform: uppercase;
-	color: #FFF;
-	font-weight: bold;
-	font-size: 15px;
-	letter-spacing: 2px;
-}
+.site-header {
+	padding: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+	
+	.app-logo, .support {
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 15px;
+		letter-spacing: 2px;
+	}
+	
+	.app-logo {
+		text-align: left;
+		color: #FFF;
+	}
 
-.support {
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	text-transform: uppercase;
-	color: $primaryColor;
-	font-weight: bold;
-	font-size: 15px;
-	letter-spacing: 2px;
+	.support {
+		text-align: right;
+		color: $primaryColor;
+	}
 }
 
 .app {
@@ -158,7 +161,7 @@ a:-webkit-any-link {
 	transform: translateX(-100vw);
 	transition: all .3s ease;
 	opacity: 0;
-	overflow-x: auto;
+	overflow: auto;
 	
 	&.show-results {
 		
@@ -312,6 +315,6 @@ footer.site-footer {
 	padding: 20px;
 	margin-top: auto;
 	text-align: center;
-	font-size: .8rem;
+	font-size: .75rem;
 	letter-spacing: 1px;
 }

@@ -7,8 +7,7 @@ export default class App {
 		this.app = $('#app');
 		this.baseURL = "https://huxley.apphb.com";
 		this.regAccessToken = "d683dbbd-129a-40c7-92b8-3c74f2f012e4";
-		this.isIntervalActive = false;
-		this.interval = 3000;
+		this.loadDuration = 1500;
 		
 	}
 	
@@ -24,65 +23,42 @@ export default class App {
 			
 			e.preventDefault();
 			
-			let iteration = 1;
-			let from = this.app.find('#from').val();
-			let to = this.app.find('#to').val();
-			
-			this.isIntervalActive = true;
-			$('.loading-container').addClass('loading');
-			
-			this.queryInterval = setInterval( () => {
+			this.runApp();
 					
-					this.getDelays(from, to, (data) =>{
-					
-						this.renderResults(data, () => {
-							
-							if (this.isIntervalActive){
-								
-								$('.loading-container').removeClass('loading');
-								this.animateForward();
-							}
-
-						});
-						
-				iteration++;
-
-				})}, this.interval);
-					
-			});
+		});
 		
 		$(document).on('keydown', (e) => {
 			
 			if(e.which == 39) {
 				
-				let iteration = 1;
-				let from = this.app.find('#from').val();
-				let to = this.app.find('#to').val();
-				
-				this.isIntervalActive = true;
-				$('.loading-container').addClass('loading');
-				
-				this.queryInterval = setInterval( () => {
-					
-					this.getDelays(from, to, (data) =>{
-					
-						this.renderResults(data, () => {
-
-							if (this.isIntervalActive && iteration === 1){
-								
-								$('.loading-container').removeClass('loading');
-								this.animateForward();
-							}
-
-						});
-						
-				iteration++;
-
-				})}, this.interval);
+				this.runApp();
 			}
 			
 		});
 		
+	}
+	
+	runApp() {
+		
+		let from = this.app.find('#from').val();
+		let to = this.app.find('#to').val();		
+					
+		this.getDelays(from, to, (data) =>{
+					
+			this.renderResults(data, () => {
+				
+				$('.loading-container').addClass('loading');
+				
+				setTimeout( () => {
+					
+					$('.loading-container').removeClass('loading');
+					this.animateForward();
+			
+				}, this.loadDuration);
+				
+			});
+		});
+						
 	}
 	
 	getDelays(from, to, callback) {
@@ -107,9 +83,7 @@ export default class App {
 			
 			if (request.status == 500){
 				
-				clearInterval(that.queryInterval);
-				that.isIntervalActive = false;
-				$('.loading-container').removeClass('loading');
+				alert('invalid station input!');
 			}
 			
 		};
@@ -119,14 +93,18 @@ export default class App {
 	
 	
 	animateForward() {
+		
 		this.app.find('form').addClass('slide-right');
 		this.app.find('#results').addClass('show-results');
+		
 	}
 	
 	animateBackward() {
+		
 		this.app.find('#results').html("");
 		this.app.find('#results').removeClass('show-results');
 		this.app.find('form').removeClass('slide-right');
+		
 	}
 	
 	renderResults(data, callback) {
@@ -224,8 +202,6 @@ export default class App {
 		
 			this.app.find('#results').html("");
 			this.animateBackward();
-			this.isIntervalActive = false;
-			clearInterval(this.queryInterval);
 			
 		});
 		
