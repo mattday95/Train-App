@@ -75,6 +75,7 @@ export default class App {
 				if (request.responseText){
 					
 					var response = JSON.parse(request.response);
+					console.log(response);
 					
 					if(callback){callback(response)};
 				}
