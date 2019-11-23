@@ -92,9 +92,39 @@ a:-webkit-any-link {
 		
 		.form-input {
 			
+			position: relative;
 			margin-bottom: 20px;
 			display: flex;
 			flex-direction: column;
+			
+			.suggestion-list {
+				
+				display: flex;
+				flex-direction: column;
+				list-style-type: none;
+				text-align: center;
+				position: absolute;
+				top: 101%;
+				left: 0;
+				width: 100%;
+				z-index: 1;
+				background: #000;
+				border: 1px solid #756F6F;
+				border-top: none;
+				opacity: 0;
+				visibility: hidden;
+					
+					li {
+						padding: 20px 0;
+						border-bottom: 1px solid #756F6F;
+						cursor: pointer;
+					}
+				
+				&.show-suggestions {
+					opacity: 1;
+					visibility: visible;
+				}
+			}
 			
 			input {
 				
